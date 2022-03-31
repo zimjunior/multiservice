@@ -28,16 +28,7 @@ class UserPaginatedQuery extends Query
                 'id'                           => ['type' => Type::int()],
                 'name'                         => ['type' => Type::string()],
                 'email'                        => ['type' => Type::string()],
-                'search'                       => ['type' => Type::string()],
                 'role_id'                      => ['type' => Type::int()],
-                'nci'                   => ['type' => Type::string()],
-                'is_client'                    => ['type' => Type::boolean(), 'description' => ''],
-                'nom'                          => ['type' => Type::string(), 'description' => ''],
-                'prenom'                       => ['type' => Type::string(), 'description' => ''],
-                'telephone'                    => ['type' => Type::string(), 'description' => ''],
-                'pays'                         => ['type' => Type::string(), 'description' => ''],
-                'adresse_complet'               => ['type' => Type::string(), 'description' => ''],
-                'code_postal'                  => ['type' => Type::string(), 'description' => ''],
                 'page'                         => ['type' => Type::int()],
                 'count'                        => ['type' => Type::int()],
             ];
@@ -51,10 +42,7 @@ class UserPaginatedQuery extends Query
         {
             $query = $query->where('id', $args['id']);
         }
-         if (isset($args['is_client']))
-        {
-            $query = $query->where('is_client', $args['is_client']);
-        }
+       
         if (isset($args['role_id']))
         {
             $role_id = $args['role_id'];
@@ -71,37 +59,7 @@ class UserPaginatedQuery extends Query
         {
             $query = $query->where('email', Outil::getOperateurLikeDB(), '%'.$args['email'].'%');
         }
-        if (isset($args['search']))
-        {
-            $query = $query->where('name', Outil::getOperateurLikeDB(),'%'. $args['search'] . '%')
-                ->orWhere('email', Outil::getOperateurLikeDB(),'%'. $args['search'] . '%');
-        }
-         if (isset($args['nom']))
-        {
-            $query = $query->where('nom', Outil::getOperateurLikeDB(), '%'.$args['nom'].'%');
-        }
-         if (isset($args['prenom']))
-        {
-            $query = $query->where('prenom', Outil::getOperateurLikeDB(), '%'.$args['prenom'].'%');
-        }
-         if (isset($args['pays']))
-        {
-            $query = $query->where('pays', Outil::getOperateurLikeDB(), '%'.$args['pays'].'%');
-        }
-         if (isset($args['telephone']))
-        {
-            $query = $query->where('telephone', Outil::getOperateurLikeDB(), '%'.$args['telephone'].'%');
-        }
-        if (isset($args['code_postal']))
-        {
-            $query = $query->where('code_postal', Outil::getOperateurLikeDB(), '%'.$args['code_postal'].'%');
-        }
-        if (isset($args['adress_complet']))
-        {
-            $query = $query->where('adress_complet', Outil::getOperateurLikeDB(), '%'.$args['adress_complet'].'%');
-        }
-
-
+       
         $count = Arr::get($args, 'count', 10);
         $page  = Arr::get($args, 'page', 1);
 

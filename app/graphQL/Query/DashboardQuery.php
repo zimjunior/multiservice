@@ -30,9 +30,10 @@ class DashboardQuery extends  Query
         return
             [
                
-                'status'             => ['type' => Type::int()],
-                'type'               => ['type' => Type::string()],
-
+                'solde'                                => ['type' => Type::string(), 'description' => ''],
+                'amount_account'                       => ['type' => Type::string(), 'description' => ''],
+                'om'                                   => ['type' => Type::string(), 'description' => ''],
+                'amount_operateur'                     => ['type' => Type::string(), 'description' => ''],      
             ];
     }
     public function resolve($root, $args)
