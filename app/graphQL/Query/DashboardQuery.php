@@ -29,7 +29,7 @@ class DashboardQuery extends  Query
     {
         return
             [
-               
+
                 'solde'                                => ['type' => Type::string(), 'description' => ''],
                 'amount_account'                       => ['type' => Type::string(), 'description' => ''],
                 'om'                                   => ['type' => Type::string(), 'description' => ''],
